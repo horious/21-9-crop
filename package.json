@@ -1,7 +1,7 @@
 {
   "name": "crop-picture",
   "version": "1.0.0",
-  "homepage": "https://horious.github.io/21-9-crop",
+  "homepage": "/21-9-crop",
   "description": "21:9 사진 크롭 PWA 애플리케이션",
   "private": true,
   "dependencies": {
