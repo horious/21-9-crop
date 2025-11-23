@@ -1,7 +1,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import './CropEditor.css';
 
-const CROP_RATIO = 21 / 9;
+// 1920×720 해상도 비율
+const TARGET_WIDTH = 1920;
+const TARGET_HEIGHT = 720;
+const CROP_RATIO = TARGET_WIDTH / TARGET_HEIGHT;
 
 function CropEditor({ image, onComplete }) {
   const canvasRef = useRef(null);
@@ -21,7 +24,7 @@ function CropEditor({ image, onComplete }) {
   const [cropArea, setCropArea] = useState({ width: 0, height: 0 });
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // 크롭 영역 초기화
+  // 크롭 영역 초기화 - 1920×720 비율로 고정
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -29,12 +32,16 @@ function CropEditor({ image, onComplete }) {
     const containerWidth = container.clientWidth;
     const containerHeight = container.clientHeight;
 
-    // 컨테이너에 맞는 최대 크롭 영역 계산
-    let cropWidth = containerWidth * 0.9;
+    // 1920×720 비율을 유지하면서 컨테이너에 맞게 스케일링
+    const maxWidth = containerWidth * 0.9;
+    const maxHeight = containerHeight * 0.8;
+
+    // 비율을 유지하면서 컨테이너에 맞는 크기 계산
+    let cropWidth = maxWidth;
     let cropHeight = cropWidth / CROP_RATIO;
 
-    if (cropHeight > containerHeight * 0.8) {
-      cropHeight = containerHeight * 0.8;
+    if (cropHeight > maxHeight) {
+      cropHeight = maxHeight;
       cropWidth = cropHeight * CROP_RATIO;
     }
 
@@ -260,19 +267,18 @@ function CropEditor({ image, onComplete }) {
   const handleDownload = () => {
     const outputCanvas = document.createElement('canvas');
     // 고정 해상도: 1920 x 720
-    outputCanvas.width = 1920;
-    outputCanvas.height = 720;
+    outputCanvas.width = TARGET_WIDTH;
+    outputCanvas.height = TARGET_HEIGHT;
     const ctx = outputCanvas.getContext('2d');
 
-    // 크롭 영역의 비율로 스케일 계산
-    const scaleX = 1920 / cropArea.width;
-    const scaleY = 720 / cropArea.height;
+    // 화면의 크롭 영역을 1920×720으로 정확히 매핑하는 스케일 (비율이 같으므로 단일 스케일 사용)
+    const scale = TARGET_WIDTH / cropArea.width;
 
     ctx.save();
-    ctx.translate(960, 360); // 1920/2, 720/2
-    ctx.translate(transform.x * scaleX, transform.y * scaleY);
+    ctx.translate(TARGET_WIDTH / 2, TARGET_HEIGHT / 2);
+    ctx.translate(transform.x * scale, transform.y * scale);
     ctx.rotate((transform.rotation * Math.PI) / 180);
-    ctx.scale(transform.scale * scaleX, transform.scale * scaleY);
+    ctx.scale(transform.scale * scale, transform.scale * scale);
 
     ctx.drawImage(
       image,

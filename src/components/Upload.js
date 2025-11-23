@@ -60,9 +60,9 @@ function Upload({ onImageLoad }) {
     >
       <div className="upload-content">
         <div className="upload-icon">📷</div>
-        <h1 className="upload-title">21:9 사진 크롭</h1>
+        <h1 className="upload-title">1920×720 크롭</h1>
         <p className="upload-description">
-          사진을 업로드하여 21:9 비율로 크롭하세요
+          사진을 업로드하여 1920×720 해상도로 크롭하세요
         </p>
         <button className="upload-button" onClick={handleButtonClick}>
           사진 선택

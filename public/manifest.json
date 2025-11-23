@@ -1,7 +1,7 @@
 {
-  "short_name": "Crop 21:9",
-  "name": "21:9 사진 크롭",
-  "description": "사진을 21:9 비율로 크롭하는 애플리케이션",
+  "short_name": "1920×720",
+  "name": "1920×720 크롭",
+  "description": "사진을 1920×720 해상도로 크롭하는 애플리케이션",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,4 +21,3 @@
   "background_color": "#ffffff",
   "orientation": "any"
 }
-
