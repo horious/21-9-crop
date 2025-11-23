@@ -1,0 +1,24 @@
+{
+  "short_name": "Crop 21:9",
+  "name": "21:9 사진 크롭",
+  "description": "사진을 21:9 비율로 크롭하는 애플리케이션",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "any"
+}
+
