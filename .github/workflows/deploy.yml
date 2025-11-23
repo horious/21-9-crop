@@ -35,29 +35,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Clean build directory
-        run: rm -rf build
-
       - name: Build
         run: npm run build
         env:
           CI: false
           GENERATE_SOURCEMAP: false
-
-      - name: Verify build output
-        run: |
-          if [ ! -d "build" ]; then
-            echo "Error: build directory not found!"
-            exit 1
-          fi
-          echo "Build files:"
-          ls -la build/
-          echo ""
-          echo "Static JS files:"
-          ls -la build/static/js/ || echo "No JS files found"
-          echo ""
-          echo "Index.html JS references:"
-          grep -o 'src="[^"]*\.js"' build/index.html || echo "No JS references found"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
