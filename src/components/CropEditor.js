@@ -329,10 +329,6 @@ function CropEditor({ image, onComplete }) {
           💾
         </button>
       </div>
-      
-      <div className="crop-info">
-        21:9 비율 | 드래그로 이동 | {window.innerWidth > 768 ? '휠로 확대/축소' : '핀치로 확대/축소'}
-      </div>
     </div>
   );
 }
