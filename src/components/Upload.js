@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './Upload.css';
 
-function Upload({ onImageLoad }) {
+function Upload({ onImageLoad, showInstallButton, onInstallClick }) {
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -83,6 +83,11 @@ function Upload({ onImageLoad }) {
           </p>
         )}
       </div>
+      {showInstallButton && (
+        <button className="install-button" onClick={onInstallClick}>
+          📱 홈 화면에 설치
+        </button>
+      )}
       <input
         ref={fileInputRef}
         type="file"
