@@ -70,6 +70,18 @@ function Upload({ onImageLoad }) {
         <p className="upload-hint">
           또는 여기에 사진을 드래그 앤 드롭하세요
         </p>
+        {process.env.REACT_APP_BUILD_DATE && (
+          <p className="build-date">
+            빌드: {new Date(process.env.REACT_APP_BUILD_DATE).toLocaleString('ko-KR', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              timeZone: 'Asia/Seoul'
+            })}
+          </p>
+        )}
       </div>
       <input
         ref={fileInputRef}

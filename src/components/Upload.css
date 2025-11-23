@@ -75,6 +75,13 @@
   margin-top: 24px;
 }
 
+.build-date {
+  font-size: 12px;
+  color: #555555;
+  margin-top: 32px;
+  opacity: 0.7;
+}
+
 @media (max-width: 768px) {
   .upload-content {
     padding: 20px;

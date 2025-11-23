@@ -35,12 +35,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set build date
+        id: build-date
+        run: echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
           CI: false
           GENERATE_SOURCEMAP: false
+          REACT_APP_BUILD_DATE: ${{ steps.build-date.outputs.date }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
