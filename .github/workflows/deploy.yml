@@ -38,6 +38,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          NODE_ENV: production
           CI: false
           GENERATE_SOURCEMAP: false
 

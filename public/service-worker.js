@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 const CACHE_NAME = 'crop-picture-v2';
 const urlsToCache = [
 	'./',
@@ -27,6 +28,7 @@ self.addEventListener('activate', event => {
 					if (cacheName !== CACHE_NAME) {
 						return caches.delete(cacheName);
 					}
+					return null;
 				})
 			);
 		})
@@ -36,8 +38,13 @@ self.addEventListener('activate', event => {
 
 // Fetch 이벤트 - Network First Strategy (모든 요청에 대해)
 self.addEventListener('fetch', event => {
-	// http/https 요청만 처리
-	if (!event.request.url.startsWith('http')) {
+	// http/https 요청만 처리하고, 내 앱의 origin과 일치하는 경우만 처리
+	if (!event.request.url.startsWith('http') || new URL(event.request.url).origin !== self.location.origin) {
+		return;
+	}
+
+	// Webpack HMR 관련 파일 무시 (hot-update.json, hot-update.js 등)
+	if (event.request.url.includes('hot-update')) {
 		return;
 	}
 
@@ -69,4 +76,3 @@ self.addEventListener('fetch', event => {
 			})
 	);
 });
-
