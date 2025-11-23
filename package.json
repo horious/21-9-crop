@@ -2,7 +2,7 @@
   "name": "crop-picture",
   "version": "1.0.0",
   "homepage": "/21-9-crop",
-  "description": "21:9 사진 크롭 PWA 애플리케이션",
+  "description": "1920×720 해상도 사진 크롭 PWA 애플리케이션",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
