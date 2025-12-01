@@ -62,7 +62,7 @@ function Upload({ onImageLoad, showInstallButton, onInstallClick }) {
         <div className="upload-icon">📷</div>
         <h1 className="upload-title">1920×720 크롭</h1>
         <p className="upload-description">
-          사진을 업로드하여 1920×720 해상도로 크롭하세요
+          사진을 선택하여 1920×720 해상도로 크롭하세요.
         </p>
         <button className="upload-button" onClick={handleButtonClick}>
           사진 선택
@@ -70,6 +70,19 @@ function Upload({ onImageLoad, showInstallButton, onInstallClick }) {
         <p className="upload-hint">
           또는 여기에 사진을 드래그 앤 드롭하세요
         </p>
+
+        <div className="privacy-notice">
+          <p>🔒 모든 작업은 브라우저에서 수행되며 서버로 사진을 전송하지 않습니다.</p>
+          <a
+            href="https://github.com/horious/21-9-crop"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-link"
+          >
+            GitHub 저장소
+          </a>
+        </div>
+
         {process.env.REACT_APP_BUILD_DATE && (
           <p className="build-date">
             빌드: {new Date(process.env.REACT_APP_BUILD_DATE).toLocaleString('ko-KR', {
